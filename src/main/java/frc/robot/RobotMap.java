@@ -21,9 +21,22 @@ public class RobotMap {
     public static final int compressorPort = 0;
 
     // Servos
-    public static final int servoLow = 0;
-    public static final int servoMid = 1;
-    public static final int servoHigh = 2;
+    public static final int servoLowPort = 0;
+    public static final int servoMidPort = 1;
+    public static final int servoHighPort = 2;
+
+    // Servo Positions (Degrees)
+    public static final int offPos = 0;
+    public static final int onPos = 20;
+
+    // Lights
+    public static final int lowLightChan = 0;
+    public static final int midLightChan = 1;
+    public static final int highLightChan = 2;
+
+    // Light States
+    public static final int lightOff = 0;
+    public static final int lightOn = 12;
 
     // Controller
     public static final int xboxControlPort = 0;

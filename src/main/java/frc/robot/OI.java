@@ -8,10 +8,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.commands.ToggleAllCannons;
+import frc.commands.ToggleHighCannon;
+import frc.commands.ToggleLowCannon;
+import frc.commands.ToggleMidCannon;
 import edu.wpi.first.wpilibj.XboxController;
 
 /**
- * Add your docs here.
+ * The operator interface, maps controller buttons to commands
  */
 public class OI {
     private XboxController control;
@@ -27,6 +31,12 @@ public class OI {
         bButton = new JoystickButton(control, RobotMap.bButtonID);
         xButton = new JoystickButton(control, RobotMap.xButtonID);
         yButton = new JoystickButton(control, RobotMap.yButtonID);
+
+/*      xButton.whenPressed(new ToggleLowCannon());
+        aButton.whenPressed(new ToggleMidCannon());
+        bButton.whenPressed(new ToggleHighCannon());
+        yButton.whenPressed(new ToggleAllCannons());
+ */
     }
 
     public XboxController getController()

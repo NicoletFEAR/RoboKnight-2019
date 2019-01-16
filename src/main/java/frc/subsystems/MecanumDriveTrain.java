@@ -50,9 +50,9 @@ public class MecanumDriveTrain extends Subsystem {
   //NOTE: Remember to divide speed values by 2 to slow down robot in gym
   public void mechDrive()
   {
-    mecDriver.driveCartesian(Robot.oi.getController().getY(Hand.kLeft),
-                             -Robot.oi.getController().getX(Hand.kLeft),
-                             Robot.oi.getController().getX(Hand.kRight));
+    mecDriver.driveCartesian(Robot.oi.getController().getY(Hand.kLeft) / 2,
+                             -Robot.oi.getController().getX(Hand.kLeft) / 2,
+                             Robot.oi.getController().getX(Hand.kRight) / 2);
   }
 
   /* See note above

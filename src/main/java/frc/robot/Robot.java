@@ -7,10 +7,12 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.subsystems.CannonArray;
 import frc.subsystems.MecanumDriveTrain;
 
 /**
@@ -28,7 +30,10 @@ public class Robot extends TimedRobot {
 
   // Subsystems
   public static OI oi;
+  public static CannonArray isThisCannon;
   public static MecanumDriveTrain mecTrain;
+  // Doesn't really need a subsystem, does everything on its own once constructed
+  private static Compressor airGetter;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -37,8 +42,12 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     // Subsystem init
-    oi = new OI();
     mecTrain = new MecanumDriveTrain();
+    isThisCannon = new CannonArray();
+    //airGetter = new Compressor(RobotMap.compressorPort);
+
+    // Always init after all subsystems, else fails to start
+    oi = new OI();
 
     // Example Auto
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
@@ -56,6 +65,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("Angle", isThisCannon.lowPress.getAngle());
   }
 
   /**
