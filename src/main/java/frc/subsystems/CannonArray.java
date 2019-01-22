@@ -7,32 +7,25 @@
 
 package frc.subsystems;
 
-import edu.wpi.first.wpilibj.AnalogOutput;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 /**
- * Subsystem representing all 3 cannons and their status lights
+ * Subsystem representing all 3 cannons
  */
 public class CannonArray extends Subsystem {
   public Servo lowPress;
   private Servo midPress;
   private Servo highPress;
-  private AnalogOutput lowLight;
-  private AnalogOutput midLight;
-  private AnalogOutput highLight;
 
   public CannonArray()
   {
-/*  lowPress = new Servo(RobotMap.servoLowPort);
+    lowPress = new Servo(RobotMap.servoLowPort);
     midPress = new Servo(RobotMap.servoMidPort);
     highPress = new Servo(RobotMap.servoHighPort);
-    lowLight = new AnalogOutput(RobotMap.lowLightChan);
-    midLight = new AnalogOutput(RobotMap.midLightChan);
-    highLight = new AnalogOutput(RobotMap.highLightChan); */
 
-    //allCannonsOff();
+    allCannonsOff();
   }
 
   @Override
@@ -41,10 +34,6 @@ public class CannonArray extends Subsystem {
 
   public void allCannonsOn()
   {
-    lowLight.setVoltage(RobotMap.lightOff);
-    midLight.setVoltage(RobotMap.lightOff);
-    highLight.setVoltage(RobotMap.lightOff);
-
     lowPress.setAngle(RobotMap.onPos);
     midPress.setAngle(RobotMap.onPos);
     highPress.setAngle(RobotMap.onPos);
@@ -52,10 +41,6 @@ public class CannonArray extends Subsystem {
 
   public void allCannonsOff()
   {
-    lowLight.setVoltage(RobotMap.lightOn);
-    midLight.setVoltage(RobotMap.lightOn);
-    highLight.setVoltage(RobotMap.lightOn);
-
     lowPress.setAngle(RobotMap.offPos);
     midPress.setAngle(RobotMap.offPos);
     highPress.setAngle(RobotMap.offPos);
@@ -77,12 +62,10 @@ public class CannonArray extends Subsystem {
   {
     if (lowPress.getAngle() != RobotMap.offPos)
     {
-      lowLight.setVoltage(RobotMap.lightOff);
       lowPress.setAngle(RobotMap.offPos);
     }
     else
     {
-      lowLight.setVoltage(RobotMap.lightOn);
       lowPress.setAngle(RobotMap.onPos);
     }
   }
@@ -91,12 +74,10 @@ public class CannonArray extends Subsystem {
   {
     if (midPress.getAngle() != RobotMap.offPos)
     {
-      midLight.setVoltage(RobotMap.lightOff);
       midPress.setAngle(RobotMap.offPos);
     }
     else
     {
-      midLight.setVoltage(RobotMap.lightOn);
       midPress.setAngle(RobotMap.onPos);
     }
   }
@@ -105,12 +86,10 @@ public class CannonArray extends Subsystem {
   {
     if (highPress.getAngle() != RobotMap.offPos)
     {
-      highLight.setVoltage(RobotMap.lightOff);
       highPress.setAngle(RobotMap.offPos);
     }
     else
     {
-      highLight.setVoltage(RobotMap.lightOn);
       highPress.setAngle(RobotMap.onPos);
     }
   }

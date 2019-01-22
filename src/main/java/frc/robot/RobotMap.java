@@ -26,8 +26,8 @@ public class RobotMap {
     public static final int servoHighPort = 2;
 
     // Servo Positions (Degrees)
-    public static final int offPos = 0;
-    public static final int onPos = 20;
+    public static final int offPos = 160;
+    public static final int onPos = 90;
 
     // Lights
     public static final int lowLightChan = 0;

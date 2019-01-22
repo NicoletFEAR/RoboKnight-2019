@@ -32,11 +32,11 @@ public class OI {
         xButton = new JoystickButton(control, RobotMap.xButtonID);
         yButton = new JoystickButton(control, RobotMap.yButtonID);
 
-/*      xButton.whenPressed(new ToggleLowCannon());
+        xButton.whenPressed(new ToggleLowCannon());
         aButton.whenPressed(new ToggleMidCannon());
         bButton.whenPressed(new ToggleHighCannon());
         yButton.whenPressed(new ToggleAllCannons());
- */
+
     }
 
     public XboxController getController()
