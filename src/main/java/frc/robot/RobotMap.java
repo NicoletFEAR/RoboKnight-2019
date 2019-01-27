@@ -27,7 +27,7 @@ public class RobotMap {
 
     // Servo Positions (Degrees)
     public static final int offPos = 160;
-    public static final int onPos = 90;
+    public static final int onPos = 100;
 
     // Lights
     public static final int lowLightChan = 0;
@@ -44,4 +44,6 @@ public class RobotMap {
     public static final int bButtonID = 2;
     public static final int xButtonID = 3;
     public static final int yButtonID = 4;
+    public static final int lbButtonID = 5;
+    public static final int rbButtonID = 6;
 }

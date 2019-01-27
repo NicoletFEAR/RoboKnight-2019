@@ -15,7 +15,7 @@ import frc.robot.RobotMap;
  * Subsystem representing all 3 cannons
  */
 public class CannonArray extends Subsystem {
-  public Servo lowPress;
+  private Servo lowPress;
   private Servo midPress;
   private Servo highPress;
 
@@ -26,6 +26,21 @@ public class CannonArray extends Subsystem {
     highPress = new Servo(RobotMap.servoHighPort);
 
     allCannonsOff();
+  }
+
+  public boolean isLowOn()
+  {
+    return lowPress.getAngle() != RobotMap.offPos;
+  }
+
+  public boolean isMidOn()
+  {
+    return midPress.getAngle() != RobotMap.offPos;
+  }
+
+  public boolean isHighOn()
+  {
+    return highPress.getAngle() != RobotMap.offPos;
   }
 
   @Override
@@ -48,7 +63,7 @@ public class CannonArray extends Subsystem {
 
   public void toggleAllCannons()
   {
-    if (lowPress.getAngle() != RobotMap.offPos || midPress.getAngle() == RobotMap.offPos || highPress.getAngle() != RobotMap.offPos)
+    if (lowPress.getAngle() != RobotMap.offPos || midPress.getAngle() != RobotMap.offPos || highPress.getAngle() != RobotMap.offPos)
     {
       allCannonsOff();
     }

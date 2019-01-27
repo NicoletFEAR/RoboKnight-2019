@@ -7,11 +7,8 @@
 
 package frc.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -48,10 +45,11 @@ public class MecanumDriveTrain extends Subsystem {
   }
 
   //NOTE: Remember to divide speed values by 2 to slow down robot in gym
+  //OTHER NOTE: For some reason changing Talon ports didn't work...negative fixes it though...
   public void mechDrive()
   {
-    mecDriver.driveCartesian(Robot.oi.getController().getY(Hand.kLeft) / 2,
-                             -Robot.oi.getController().getX(Hand.kLeft) / 2,
+    mecDriver.driveCartesian(-Robot.oi.getController().getY(Hand.kLeft) / 2,
+                             Robot.oi.getController().getX(Hand.kLeft) / 2,
                              Robot.oi.getController().getX(Hand.kRight) / 2);
   }
 

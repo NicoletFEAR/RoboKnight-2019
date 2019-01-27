@@ -7,12 +7,12 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.subsystems.CannonArray;
+import frc.subsystems.CompressAir;
 import frc.subsystems.MecanumDriveTrain;
 
 /**
@@ -32,8 +32,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static CannonArray isThisCannon;
   public static MecanumDriveTrain mecTrain;
-  // Doesn't really need a subsystem, does everything on its own once constructed
-  private static Compressor airGetter;
+  public static CompressAir airGetter;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -44,7 +43,7 @@ public class Robot extends TimedRobot {
     // Subsystem init
     mecTrain = new MecanumDriveTrain();
     isThisCannon = new CannonArray();
-    //airGetter = new Compressor(RobotMap.compressorPort);
+    airGetter = new CompressAir();
 
     // Always init after all subsystems, else fails to start
     oi = new OI();
@@ -65,7 +64,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("Angle", isThisCannon.lowPress.getAngle());
+    SmartDashboard.putBoolean("Pressure Low?", airGetter.isLowPressure());
+    SmartDashboard.putBoolean("Low Cannon On?", isThisCannon.isLowOn());
+    SmartDashboard.putBoolean("Mid Cannon On?", isThisCannon.isMidOn());
+    SmartDashboard.putBoolean("High Cannon On?", isThisCannon.isHighOn());
   }
 
   /**

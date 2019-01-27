@@ -12,6 +12,8 @@ import frc.commands.ToggleAllCannons;
 import frc.commands.ToggleHighCannon;
 import frc.commands.ToggleLowCannon;
 import frc.commands.ToggleMidCannon;
+import frc.commands.DisableCompressor;
+import frc.commands.EnableCompressor;
 import edu.wpi.first.wpilibj.XboxController;
 
 /**
@@ -23,6 +25,8 @@ public class OI {
     private JoystickButton bButton;
     private JoystickButton xButton;
     private JoystickButton yButton;
+    private JoystickButton lbButton;
+    private JoystickButton rbButton;
 
     public OI()
     {
@@ -31,12 +35,15 @@ public class OI {
         bButton = new JoystickButton(control, RobotMap.bButtonID);
         xButton = new JoystickButton(control, RobotMap.xButtonID);
         yButton = new JoystickButton(control, RobotMap.yButtonID);
+        lbButton = new JoystickButton(control, RobotMap.lbButtonID);
+        rbButton = new JoystickButton(control, RobotMap.rbButtonID);
 
         xButton.whenPressed(new ToggleLowCannon());
         aButton.whenPressed(new ToggleMidCannon());
         bButton.whenPressed(new ToggleHighCannon());
         yButton.whenPressed(new ToggleAllCannons());
-
+        lbButton.whenPressed(new DisableCompressor());
+        rbButton.whenPressed(new EnableCompressor());
     }
 
     public XboxController getController()
