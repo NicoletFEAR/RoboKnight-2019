@@ -12,8 +12,16 @@ import frc.commands.ToggleAllCannons;
 import frc.commands.ToggleHighCannon;
 import frc.commands.ToggleLowCannon;
 import frc.commands.ToggleMidCannon;
+import frc.commands.AllCannonsOff;
+import frc.commands.AllCannonsOn;
 import frc.commands.DisableCompressor;
 import frc.commands.EnableCompressor;
+import frc.commands.HighCannonOff;
+import frc.commands.HighCannonOn;
+import frc.commands.LowCannonOff;
+import frc.commands.LowCannonOn;
+import frc.commands.MidCannonOff;
+import frc.commands.MidCannonOn;
 import edu.wpi.first.wpilibj.XboxController;
 
 /**
@@ -37,11 +45,23 @@ public class OI {
         yButton = new JoystickButton(control, RobotMap.yButtonID);
         lbButton = new JoystickButton(control, RobotMap.lbButtonID);
         rbButton = new JoystickButton(control, RobotMap.rbButtonID);
-
+/* Want one press on, one press off control?
+   Uncomment these lines of code, and comment cannon related buttons below
         xButton.whenPressed(new ToggleLowCannon());
         aButton.whenPressed(new ToggleMidCannon());
         bButton.whenPressed(new ToggleHighCannon());
         yButton.whenPressed(new ToggleAllCannons());
+*/
+        xButton.whenPressed(new LowCannonOn());
+        aButton.whenPressed(new MidCannonOn());
+        bButton.whenPressed(new HighCannonOn());
+        yButton.whenPressed(new AllCannonsOn());
+
+        xButton.whenReleased(new LowCannonOff());
+        aButton.whenReleased(new MidCannonOff());
+        bButton.whenReleased(new HighCannonOff());
+        yButton.whenReleased(new AllCannonsOff());
+
         lbButton.whenPressed(new DisableCompressor());
         rbButton.whenPressed(new EnableCompressor());
     }

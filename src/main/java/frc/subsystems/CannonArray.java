@@ -73,6 +73,42 @@ public class CannonArray extends Subsystem {
     }
   }
 
+  public void setLowCannon(boolean on)
+  {
+    if (on == true)
+    {
+      lowPress.setAngle(RobotMap.onPos);
+    }
+    else
+    {
+      lowPress.setAngle(RobotMap.offPos);
+    }
+  }
+
+  public void setMidCannon(boolean on)
+  {
+    if (on == true)
+    {
+      midPress.setAngle(RobotMap.onPos);
+    }
+    else
+    {
+      midPress.setAngle(RobotMap.offPos);
+    }
+  }
+
+  public void setHighCannon(boolean on)
+  {
+    if (on == true)
+    {
+      highPress.setAngle(RobotMap.onPos);
+    }
+    else
+    {
+      highPress.setAngle(RobotMap.offPos);
+    }
+  }
+
   public void toggleLowCannon()
   {
     if (lowPress.getAngle() != RobotMap.offPos)
