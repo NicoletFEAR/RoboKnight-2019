@@ -9,69 +9,60 @@ package frc.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import frc.commands.MecDrive;
+import frc.commands.TankDrive;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 /**
- * Subsystem for a mechanum drivetrain
+ * Subsystem for a tank drivetrain
  */
-public class MecanumDriveTrain extends Subsystem {
+public class TankDriveTrain extends Subsystem {
   private WPI_TalonSRX frontLeft;
   private WPI_TalonSRX frontRight;
   private WPI_TalonSRX backLeft;
   private WPI_TalonSRX backRight;
-  private MecanumDrive mecDriver;
 
-  /* Uncomment all this navX code for Field Oriented Drive
-     Don't forget to supply angle as 4th parameter to mecdrive constructor */
-  //private AHRS navX;
+  private DifferentialDrive tankDriver;
 
-  public MecanumDriveTrain()
+  private SpeedControllerGroup leftMotors;
+  private SpeedControllerGroup rightMotors;
+
+  public TankDriveTrain()
   {
     frontLeft = new WPI_TalonSRX(RobotMap.frontLeftPort);
     frontRight = new WPI_TalonSRX(RobotMap.frontRightPort);
     backLeft = new WPI_TalonSRX(RobotMap.backLeftPort);
     backRight = new WPI_TalonSRX(RobotMap.backRightPort);
 
-    //navX = new AHRS(I2C.Port.kMXP);
-    mecDriver = new MecanumDrive(frontLeft, frontRight, backLeft, backRight);
-    mecDriver.setSafetyEnabled(false);
+    leftMotors = new SpeedControllerGroup(frontLeft, backLeft);
+    rightMotors = new SpeedControllerGroup(frontRight, backRight);
 
-    //resetNavX();
+    tankDriver = new DifferentialDrive(leftMotors, rightMotors);
+
+    tankDriver.setSafetyEnabled(false);
   }
 
   //NOTE: Remember to divide speed values by 2 to slow down robot in gym
   //OTHER NOTE: For some reason changing Talon ports didn't work...negative fixes it though...
   public void mechDrive()
   {
-    mecDriver.driveCartesian(-Robot.oi.getController().getY(Hand.kLeft) / 2,
-                             Robot.oi.getController().getX(Hand.kLeft) / 2,
-                             Robot.oi.getController().getX(Hand.kRight) / 2);
+    tankDriver.tankDrive(Robot.oi.getController().getY(Hand.kLeft) / 2, 
+                         Robot.oi.getController().getY(Hand.kRight) / 2);
   }
-
-  /* See note above
-  public void resetNavX()
-  {
-    navX.reset();
-  }
-
-  public double getNavXAngle()
-  {
-    return navX.getAngle();
-  }
-  */
 
   public void stopMotors()
   {
-    mecDriver.stopMotor();
+    tankDriver.stopMotor();
   }
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new MecDrive());
+    setDefaultCommand(new TankDrive());
   }
 }

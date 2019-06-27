@@ -11,9 +11,9 @@ import frc.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class MecDrive extends Command {
-  public MecDrive() {
-    requires(Robot.mecTrain);
+public class TankDrive extends Command {
+  public TankDrive() {
+    requires(Robot.tankTrain);
   }
 
   // Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class MecDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.mecTrain.mechDrive();
+    Robot.tankTrain.mechDrive();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +36,7 @@ public class MecDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.mecTrain.stopMotors();
+    Robot.tankTrain.stopMotors();
   }
 
   // Called when another command which requires one or more of the same

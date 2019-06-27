@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.subsystems.CannonArray;
 import frc.subsystems.CompressAir;
-import frc.subsystems.MecanumDriveTrain;
+import frc.subsystems.TankDriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
   // Subsystems
   public static OI oi;
   public static CannonArray isThisCannon;
-  public static MecanumDriveTrain mecTrain;
+  public static TankDriveTrain tankTrain;
   public static CompressAir airGetter;
 
   /**
@@ -41,7 +41,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     // Subsystem init
-    mecTrain = new MecanumDriveTrain();
+    tankTrain = new TankDriveTrain();
     isThisCannon = new CannonArray();
     airGetter = new CompressAir();
 
