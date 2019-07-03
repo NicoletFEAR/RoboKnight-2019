@@ -9,12 +9,10 @@ package frc.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.commands.TankDrive;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -52,8 +50,8 @@ public class TankDriveTrain extends Subsystem {
   //OTHER NOTE: For some reason changing Talon ports didn't work...negative fixes it though...
   public void mechDrive()
   {
-    tankDriver.tankDrive(Robot.oi.getController().getY(Hand.kLeft) / 2, 
-                         Robot.oi.getController().getY(Hand.kRight) / 2);
+    tankDriver.tankDrive(-Robot.oi.getController().getY(Hand.kLeft), 
+                         -Robot.oi.getController().getY(Hand.kRight));
   }
 
   public void stopMotors()
