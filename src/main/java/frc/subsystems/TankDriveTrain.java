@@ -38,10 +38,12 @@ public class TankDriveTrain extends Subsystem {
     backLeft = new WPI_TalonSRX(RobotMap.backLeftPort);
     backRight = new WPI_TalonSRX(RobotMap.backRightPort);
 
-    frontLeft.configOpenloopRamp(200);
-    frontRight.configOpenloopRamp(200);
-    backLeft.configOpenloopRamp(200);
-    backRight.configOpenloopRamp(200);
+    
+    frontLeft.configOpenloopRamp(0);
+    frontRight.configOpenloopRamp(0);
+    backLeft.configOpenloopRamp(0);
+    backRight.configOpenloopRamp(0);
+    
 
     leftMotors = new SpeedControllerGroup(frontLeft, backLeft);
     rightMotors = new SpeedControllerGroup(frontRight, backRight);
@@ -55,8 +57,8 @@ public class TankDriveTrain extends Subsystem {
   //OTHER NOTE: For some reason changing Talon ports didn't work...negative fixes it though...
   public void mechDrive()
   {
-    tankDriver.tankDrive((-Robot.oi.getController().getY(Hand.kLeft))/2, 
-                         (-Robot.oi.getController().getY(Hand.kRight))/2);
+    tankDriver.tankDrive((-Robot.oi.getController().getY(Hand.kLeft) * 0.7), 
+                         (-Robot.oi.getController().getY(Hand.kRight)) * 0.7);
   }
 
   public void stopMotors()
